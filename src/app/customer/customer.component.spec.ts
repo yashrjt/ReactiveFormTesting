@@ -31,29 +31,29 @@ describe('CustomerComponent', () => {
     expect(component.customerForm instanceof FormGroup).toBe(true);
   });
   it('form is not invalid when some fields are empty',() =>{
-    /*let firstName=component.customerForm.controls['firstName'];*/
+    /*let firstName=component.customerForm['controls']['firstName'];*/
     expect(component.customerForm.valid).toBeFalsy();
   })
 
   it('firstName field required and minlength 3',()=>{
-    let fName=component.customerForm.controls['firstName'];
+    let fName=component.customerForm['controls']['firstName'];
     expect(fName.valid).toBeFalsy();
-    fName.setValue('yasodha');
+    fName.setValue('yash');
     fixture.detectChanges();
     expect(fName.valid).toBeTruthy();
     })
 
   it('email should be valid',()=>{
-    let emailGroup=component.customerForm.controls['emailGroup'];
-    let email= emailGroup.controls['email'];
-    let confirmEmail= emailGroup.controls['confirmEmail'];
+    let emailGroup=component.customerForm['controls']['emailGroup'];
+    let email= emailGroup['controls']['email'];
+    let confirmEmail= emailGroup['controls']['confirmEmail'];
     email.setValue('yash');
     expect(email.valid).toBeFalsy();
   })
   it('emailGroup should have same emails',()=>{
-    let emailGroup=component.customerForm.controls['emailGroup'];
-    let email= emailGroup.controls['email'];
-    let confirmEmail= emailGroup.controls['confirmEmail'];
+    let emailGroup=component.customerForm['controls']['emailGroup'];
+    let email= emailGroup['controls']['email'];
+    let confirmEmail= emailGroup['controls']['confirmEmail'];
     expect(email.value).toEqual(confirmEmail.value);
     email.setValue('yasodha@gmail.com');
     confirmEmail.setValue('yash@gmail.com');
@@ -62,7 +62,7 @@ describe('CustomerComponent', () => {
   })
 
   it('rating should expect from 1 to 5',()=>{
-    let rating=component.customerForm.controls['rating'];
+    let rating=component.customerForm['controls']['rating'];
     rating.setValue(4);
     expect(rating.value).toMatch('^[1-5]');
   })
